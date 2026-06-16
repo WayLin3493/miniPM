@@ -1,0 +1,30 @@
+name: MiniPM Daily Jobs
+
+on:
+  schedule:
+    - cron: "30 0 * * *"
+    - cron: "0 1 * * *"
+    - cron: "0 6 * * *"
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+
+jobs:
+  generate:
+    if: github.event.schedule == '30 0 * * *' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger MiniPM daily generation
+        run: |
+          curl -fsS -X POST "${{ secrets.MINIPM_APP_URL }}/api/admin/generate-daily" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json"
+
+  reminders:
+    if: github.event.schedule != '30 0 * * *'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger MiniPM reminders
+        run: |
+          curl -fsS -X POST "${{ secrets.MINIPM_APP_URL }}/api/admin/send-reminders" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json"
