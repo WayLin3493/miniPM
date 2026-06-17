@@ -1,11 +1,10 @@
-const CACHE = "minipm-v2";
+const CACHE = "minipm-v3";
 const APP_SHELL = [
   "/offline",
   "/app/today",
   "/app/quiz",
   "/app/review",
   "/app/stats",
-  "/icon.svg",
   "/icon-192.png",
   "/icon-512.png",
   "/maskable-icon-192.png",
