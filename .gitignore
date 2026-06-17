@@ -13,3 +13,10 @@ pnpm-debug.log*
 *.tsbuildinfo
 .logs
 artifacts
+android-twa/*.keystore
+android-twa/KEYSTORE_INFO_LOCAL.txt
+android-twa/*.apk
+android-twa/*.apk.idsig
+android-twa/*.aab
+android-twa/**/build
+android-twa/.gradle

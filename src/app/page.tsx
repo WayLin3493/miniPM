@@ -83,22 +83,23 @@ export default function HomePage() {
               ))}
             </div>
             <div id="install" className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
+              <a
                 className="pressable inline-flex items-center justify-center gap-2 rounded-3xl bg-leaf-500 px-6 py-4 text-center text-base font-black text-white shadow-button"
-                href="/app/today"
+                href="/downloads/MiniPM-1.0.0-release.apk"
+                download
               >
                 <Download className="h-5 w-5" />
-                安装 MiniPM
-              </Link>
+                下载 Android APK
+              </a>
               <Link
                 className="pressable inline-flex items-center justify-center gap-2 rounded-3xl bg-white px-6 py-4 text-center text-base font-black text-leaf-700 shadow-soft"
                 href="/app/today"
               >
-                查看今日示例
+                打开网页版 App
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </div>
-            <p className="mt-4 text-sm font-bold leading-6 text-slate-500">安装后在手机桌面打开，学习体验更像 App。</p>
+            <p className="mt-4 text-sm font-bold leading-6 text-slate-500">安卓手机可下载安装包；iPhone 可用浏览器添加到主屏幕。</p>
 
             <div id="features" className="mt-9 grid gap-4 sm:grid-cols-2">
               {featureCards.map((card) => {

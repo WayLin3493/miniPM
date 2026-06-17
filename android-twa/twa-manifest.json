@@ -1,0 +1,72 @@
+{
+  "packageId": "top.minipm.app",
+  "host": "www.minipm.top",
+  "name": "MiniPM",
+  "launcherName": "MiniPM",
+  "display": "standalone",
+  "themeColor": "#18bd62",
+  "themeColorDark": "#18bd62",
+  "navigationColor": "#ffffff",
+  "navigationColorDark": "#0f172a",
+  "navigationDividerColor": "#00000000",
+  "navigationDividerColorDark": "#00000000",
+  "backgroundColor": "#e9fbff",
+  "enableNotifications": false,
+  "enableSiteSettingsShortcut": false,
+  "startUrl": "/app/today",
+  "iconUrl": "https://www.minipm.top/icon-512.png",
+  "maskableIconUrl": "https://www.minipm.top/maskable-icon-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./minipm-release.keystore",
+    "alias": "minipm"
+  },
+  "appVersion": "1.0.0",
+  "appVersionCode": 1,
+  "shortcuts": [
+    {
+      "name": "今日学习",
+      "shortName": "今日",
+      "url": "/app/today",
+      "chosenIconUrl": "https://www.minipm.top/icon-192.png"
+    },
+    {
+      "name": "PMP 挑战",
+      "shortName": "挑战",
+      "url": "/app/quiz",
+      "chosenIconUrl": "https://www.minipm.top/icon-192.png"
+    },
+    {
+      "name": "错题复习",
+      "shortName": "复习",
+      "url": "/app/review",
+      "chosenIconUrl": "https://www.minipm.top/icon-192.png"
+    }
+  ],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://www.minipm.top/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://www.minipm.top/",
+  "minSdkVersion": 23,
+  "orientation": "portrait",
+  "fingerprints": [
+    {
+      "name": "minipm-release",
+      "value": "14:EE:34:D0:54:5B:FF:08:11:D7:09:31:4B:58:66:A5:68:5E:32:44:81:37:DA:3E:89:BD:E6:BB:A8:76:A1:DF"
+    }
+  ],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "protocolHandlers": [],
+  "fileHandlers": [],
+  "launchHandlerClientMode": "auto",
+  "displayOverride": [
+    "standalone"
+  ]
+}

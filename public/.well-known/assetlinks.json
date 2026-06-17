@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "top.minipm.app",
+      "sha256_cert_fingerprints": [
+        "14:EE:34:D0:54:5B:FF:08:11:D7:09:31:4B:58:66:A5:68:5E:32:44:81:37:DA:3E:89:BD:E6:BB:A8:76:A1:DF"
+      ]
+    }
+  }
+]
