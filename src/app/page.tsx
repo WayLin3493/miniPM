@@ -85,7 +85,7 @@ export default function HomePage() {
             <div id="install" className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 className="pressable inline-flex items-center justify-center gap-2 rounded-3xl bg-leaf-500 px-6 py-4 text-center text-base font-black text-white shadow-button"
-                href="/downloads/MiniPM-1.0.0-release.apk"
+                href="/downloads/MiniPM-android-latest.apk"
                 download
               >
                 <Download className="h-5 w-5" />

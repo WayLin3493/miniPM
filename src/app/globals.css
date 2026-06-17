@@ -54,6 +54,10 @@ input {
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
+.safe-top {
+  padding-top: max(2rem, env(safe-area-inset-top));
+}
+
 .island-card {
   border: 1px solid rgba(255, 255, 255, 0.78);
   background: rgba(255, 255, 255, 0.82);
