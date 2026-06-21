@@ -3,7 +3,7 @@ export type FeedCategory = "art" | "ai" | "github" | "tool";
 export type FeedItem = {
   id: string;
   category: FeedCategory;
-  route: "美术管线" | "AI工具" | "GitHub工具";
+  route: string;
   title: string;
   nodeLabel: string;
   summary: string;
