@@ -13,7 +13,7 @@ const emptyProgress: ProgressState = {
 
 export async function fetchTodayFeed(): Promise<DailyFeed> {
   try {
-    const response = await fetch("/api/today", { cache: "no-store" });
+    const response = await fetch(`/api/today?t=${Date.now()}`, { cache: "no-store" });
     if (!response.ok) return todayFeed;
     const data = (await response.json()) as { feed?: DailyFeed };
     return data.feed || todayFeed;

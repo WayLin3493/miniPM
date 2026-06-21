@@ -14,9 +14,31 @@ type GenerateResult = {
   persistReason?: string;
 };
 
+function getAiConfig() {
+  const provider = (process.env.AI_PROVIDER || (process.env.DEEPSEEK_API_KEY ? "deepseek" : "openai")).toLowerCase();
+
+  if (provider === "deepseek") {
+    return {
+      provider,
+      apiKey: process.env.DEEPSEEK_API_KEY,
+      baseURL: process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com",
+      model: process.env.AI_MODEL || process.env.DEEPSEEK_MODEL || "deepseek-v4-flash"
+    };
+  }
+
+  return {
+    provider: "openai",
+    apiKey: process.env.OPENAI_API_KEY,
+    baseURL: process.env.OPENAI_BASE_URL,
+    model: process.env.AI_MODEL || process.env.OPENAI_MODEL || "gpt-5-nano"
+  };
+}
+
 export async function generateDailyFeed(): Promise<GenerateResult> {
   const feedDate = chinaDateString();
-  if (!process.env.OPENAI_API_KEY) {
+  const aiConfig = getAiConfig();
+
+  if (!aiConfig.apiKey) {
     const demoFeed = { ...todayFeed, date: feedDate };
     const persistence = await persistDailyFeed(demoFeed);
     return {
@@ -25,14 +47,14 @@ export async function generateDailyFeed(): Promise<GenerateResult> {
       costs: aiCostLogs,
       mode: "demo",
       persisted: persistence.persisted,
-      persistReason: process.env.SUPABASE_SERVICE_ROLE_KEY ? persistence.reason : "missing_openai_config"
+      persistReason: process.env.SUPABASE_SERVICE_ROLE_KEY ? persistence.reason : "missing_ai_config"
     };
   }
 
   const candidates = await fetchCandidates();
-  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const client = new OpenAI({ apiKey: aiConfig.apiKey, baseURL: aiConfig.baseURL });
   const response = await client.chat.completions.create({
-    model: process.env.OPENAI_MODEL || "gpt-5-nano",
+    model: aiConfig.model,
     response_format: { type: "json_object" },
     messages: [
       {
@@ -95,7 +117,7 @@ export async function generateDailyFeed(): Promise<GenerateResult> {
       {
         id: `job-${Date.now()}`,
         status: "success",
-        name: "OpenAI 内容生成",
+        name: `${aiConfig.provider} 内容生成`,
         detail: `已调用真实 AI 生成流程，候选内容 ${candidates.length} 条，持久化：${persistence.persisted ? "成功" : persistence.reason}`,
         createdAt: new Date().toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit" })
       }

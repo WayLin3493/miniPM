@@ -1,4 +1,4 @@
-const CACHE = "minipm-v3";
+const CACHE = "minipm-v4";
 const APP_SHELL = [
   "/offline",
   "/app/today",
@@ -31,6 +31,18 @@ self.addEventListener("fetch", (event) => {
 
   const requestUrl = new URL(event.request.url);
   if (requestUrl.origin !== self.location.origin) return;
+
+  if (requestUrl.pathname.startsWith("/api/")) {
+    event.respondWith(
+      fetch(event.request, { cache: "no-store" })
+        .then((response) => response)
+        .catch(() => new Response(JSON.stringify({ ok: false, error: "network_unavailable" }), {
+          status: 503,
+          headers: { "Content-Type": "application/json" }
+        }))
+    );
+    return;
+  }
 
   if (event.request.mode === "navigate") {
     event.respondWith(fetch(event.request).catch(() => caches.match(event.request).then((cached) => cached || caches.match("/offline") || caches.match("/app/today"))));
